@@ -1,6 +1,10 @@
 from django.urls import path, include
 
 from django.contrib import admin
+from rest_framework import routers
+
+import todo
+from todo import views
 
 admin.autodiscover()
 
@@ -14,8 +18,12 @@ import hello.views
 #
 # Learn more here: https://docs.djangoproject.com/en/2.1/topics/http/urls/
 
+router = routers.DefaultRouter()                      # add this
+router.register(r'todos', views.TodoView, 'todo')     # add this
+
 urlpatterns = [
     path("", hello.views.index, name="index"),
     path("db/", hello.views.db, name="db"),
     path("admin/", admin.site.urls),
+    path('api/', include(router.urls))  # add this
 ]
