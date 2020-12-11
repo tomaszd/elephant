@@ -111,10 +111,10 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
-CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ORIGIN_ALLOW_ALL = True
 # we whitelist localhost:3000 because that's where frontend will be served
-# CORS_ORIGIN_WHITELIST = (
-#     'http://localhost:3000','https://dreamy-lewin-4a632d.netlify.app','http://127.0.0.1:3000',
-# )
+CORS_ORIGIN_WHITELIST = (
+     'http://localhost:3000','https://dreamy-lewin-4a632d.netlify.app','http://127.0.0.1:3000',
+)
 CORS_ALLOW_CREDENTIALS = True
 django_heroku.settings(locals())
