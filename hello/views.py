@@ -14,5 +14,5 @@ def index(request):
 def db(request):
     greeting = Greeting()
     greeting.save()
-    greetings = Greeting.objects.all()
+    greetings = Greeting.objects.all()[:-10]
     return render(request, "db.html", {"greetings": greetings})
