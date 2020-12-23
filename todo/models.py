@@ -20,8 +20,8 @@ class Todo(models.Model):
     completed = models.BooleanField(default=False)
     category = models.TextField(null=True, blank=True)
     priority = models.TextField(choices=PRIORITY_CHOICES, default="Low")
-    created = models.DateTimeField(editable=False, default=timezone.now())
-    modified = models.DateTimeField(default=timezone.now())
+    created = models.DateTimeField(editable=False, default=timezone.now)
+    modified = models.DateTimeField(default=timezone.now)
 
     readonly_fields = ("created", "modified",)
 
