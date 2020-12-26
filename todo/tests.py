@@ -51,3 +51,10 @@ class TodoTestCase(TestCase):
         resp = self.client.post(self.todos_list_url, {'title_field_not_present': "testtitle"})
         self.assertEquals(resp.status_code, 400)
         self.assertEqual(Todo.objects.count(), 0)
+
+    def test_todo_item_delete(self):
+        id = self.client.post(self.todos_list_url, {'title': "testtitle"}).json()['id']
+        self.assertEqual(len(self.client.get(self.todos_list_url).json()), 1)
+        resp_delete = self.client.delete(f"/api/todos/{id}/")
+        self.assertEquals(resp_delete.status_code, 204)
+        self.assertEqual(len(self.client.get(self.todos_list_url).json()), 0)
