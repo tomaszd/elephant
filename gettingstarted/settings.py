@@ -120,6 +120,8 @@ CORS_ALLOW_CREDENTIALS = True
 # https://github.com/heroku/django-heroku/issues/39
 if 'I_AM_HEROKU' in os.environ:
     # Configure Django App for Heroku.
-    import django_heroku
+    pass
 
-    django_heroku.settings(locals())
+import django_heroku
+
+django_heroku.settings(locals())
