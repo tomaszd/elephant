@@ -1,4 +1,5 @@
 # Python: Task Manager app
+![Django CI](https://github.com/tomaszd/elephant/workflows/Django%20CI/badge.svg)
 
 Django app, which can easily be deployed to Heroku.
 
