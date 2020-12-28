@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -117,4 +116,10 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000', 'https://dreamy-lewin-4a632d.netlify.app', 'http://127.0.0.1:3000',
 )
 CORS_ALLOW_CREDENTIALS = True
-#django_heroku.settings(locals())
+# Heroku needed and only heroku. set conditional to have working github actions for testing
+# https://github.com/heroku/django-heroku/issues/39
+if 'I_AM_HEROKU' in os.environ:
+    # Configure Django App for Heroku.
+    import django_heroku
+
+    django_heroku.settings(locals())
