@@ -65,6 +65,8 @@ class TodoTestCase(TestCase):
         self.client.post(self.todos_completed_url, {'title': "testtitle1", 'completed': True, 'priority': "High"})
         self.client.post(self.todos_completed_url, {'title': "testtitle2", 'completed': True, 'priority': "High"})
         self.client.post(self.todos_completed_url, {'title': "testtitle3", 'completed': True, 'priority': "High"})
+        self.assertEqual(len(self.client.get(self.todos_list_url).json()), 3 + 1)
         self.assertEqual(len(self.client.get(self.todos_completed_url).json()), 3)
         self.client.post(self.todos_completed_url + "?delete_all=1", {'title': "testtitle3", 'completed': True})
         self.assertEqual(len(self.client.get(self.todos_completed_url).json()), 0)
+        self.assertEqual(len(self.client.get(self.todos_list_url).json()), 1)
