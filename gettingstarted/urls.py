@@ -18,8 +18,9 @@ import hello.views
 #
 # Learn more here: https://docs.djangoproject.com/en/2.1/topics/http/urls/
 
-router = routers.DefaultRouter()                      # add this
-router.register(r'todos', views.TodoView, 'todo')     # add this
+router = routers.DefaultRouter()  # add this
+router.register(r'todos', views.TodoView, 'todo')  # add this
+router.register(r'todos_completed', views.TodoViewCompleted, 'todo')
 
 urlpatterns = [
     path("", hello.views.index, name="index"),

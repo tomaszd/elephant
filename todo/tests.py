@@ -6,6 +6,7 @@ from todo.models import Todo
 
 class TodoTestCase(TestCase):
     todos_list_url = "/api/todos/"
+    todos_completed_url = "/api/todos_completed/"
     client = Client()
 
     def setUp(self):
@@ -58,3 +59,12 @@ class TodoTestCase(TestCase):
         resp_delete = self.client.delete(f"/api/todos/{id}/")
         self.assertEquals(resp_delete.status_code, 204)
         self.assertEqual(len(self.client.get(self.todos_list_url).json()), 0)
+
+    def test_finish_completed(self):
+        self.client.post(self.todos_completed_url, {'title': "testtitle1", 'completed': False, 'priority': "High"})
+        self.client.post(self.todos_completed_url, {'title': "testtitle1", 'completed': True, 'priority': "High"})
+        self.client.post(self.todos_completed_url, {'title': "testtitle2", 'completed': True, 'priority': "High"})
+        self.client.post(self.todos_completed_url, {'title': "testtitle3", 'completed': True, 'priority': "High"})
+        self.assertEqual(len(self.client.get(self.todos_completed_url).json()), 3)
+        self.client.post(self.todos_completed_url + "?delete_all=1", {'title': "testtitle3", 'completed': True})
+        self.assertEqual(len(self.client.get(self.todos_completed_url).json()), 0)
