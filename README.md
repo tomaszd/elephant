@@ -1,3 +1,5 @@
+example deployment  https://dreamy-lewin-4a632d.netlify.app/   with React on frontend
+
 # Python: Task Manager app
 ![Django CI](https://github.com/tomaszd/elephant/workflows/Django%20CI/badge.svg)
 
